@@ -156,7 +156,6 @@ input:focus, select:focus {
     cursor: pointer;
 }
 
-/* Botones de tabla tienen menos padding */
 table .btn, .barra-acciones .btn {
     padding: 8px 16px;
     font-size: 14px;
