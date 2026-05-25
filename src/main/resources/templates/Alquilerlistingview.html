@@ -40,7 +40,6 @@
                 <td th:text="${alquiler.pelicula.titulo}"></td>
                 <td th:text="${alquiler.fechaAlquiler}"></td>
                 <td th:text="${alquiler.fechaDevolucion != null ? alquiler.fechaDevolucion : '—'}"></td>
-                <td th:text="${alquiler.precioTotal > 0 ? alquiler.precioTotal + ' €' : '—'}"></td>
                 <td>
                     <span th:if="${alquiler.devuelta}" class="badge badge-devuelta">Devuelta</span>
                     <span th:if="${!alquiler.devuelta}" class="badge badge-pendiente">Pendiente</span>

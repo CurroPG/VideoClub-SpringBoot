@@ -1,7 +1,6 @@
 package com.example.videoclub.controller;
 
 import com.example.videoclub.entity.Alquiler;
-import java.math.BigDecimal;
 import com.example.videoclub.entity.Cliente;
 import com.example.videoclub.entity.Pelicula;
 import com.example.videoclub.repository.AlquilerRepository;
@@ -60,15 +59,6 @@ public class AlquilerController {
 
         alquiler.setCliente(cliente);
         alquiler.setPelicula(pelicula);
-
-        // Calcular precio total si hay fecha devolución
-        if (alquiler.getFechaDevolucion() != null) {
-            long dias = java.time.temporal.ChronoUnit.DAYS.between(
-                    alquiler.getFechaAlquiler(), alquiler.getFechaDevolucion());
-            if (dias < 1) dias = 1;
-            BigDecimal precioTotalCalculado = BigDecimal.valueOf(pelicula.getPrecio()).multiply(BigDecimal.valueOf(dias));
-            alquiler.setPrecioTotal(precioTotalCalculado);
-        }
 
         alquilerRepository.save(alquiler);
         return "redirect:/alquileres";

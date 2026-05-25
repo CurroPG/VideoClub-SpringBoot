@@ -47,7 +47,6 @@
                 <label for="fechaDevolucion">Fecha de devolución prevista <span style="color:#aaa; font-weight:normal">(opcional)</span></label>
                 <input type="date" id="fechaDevolucion" th:field="*{fechaDevolucion}"/>
                 <span class="error" th:if="${#fields.hasErrors('fechaDevolucion')}" th:errors="*{fechaDevolucion}"></span>
-                <p class="info">Si indicas la fecha de devolución, se calculará el precio total automáticamente.</p>
             </div>
 
             <div class="acciones">
