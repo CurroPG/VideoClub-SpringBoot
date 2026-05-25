@@ -140,6 +140,22 @@ input:focus, select:focus {
     margin-top: 4px;
 }
 
+.input-file {
+    width: 100%;
+    padding: 10px 12px;
+    border: 2px dashed #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #fafafa;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+.input-file:hover {
+    border-color: #7b2d00;
+}
+
 /* Botones y Acciones */
 .barra-acciones {
     display: flex;
