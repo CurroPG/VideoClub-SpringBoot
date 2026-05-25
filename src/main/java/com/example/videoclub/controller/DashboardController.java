@@ -30,6 +30,8 @@ public class DashboardController {
         model.addAttribute("totalClientes", clienteRepository.count());
         model.addAttribute("totalPeliculas", peliculaRepository.count());
         model.addAttribute("totalAlquileres", alquilerRepository.count());
+        // Enviamos la lista de todas las películas para el catálogo visual
+        model.addAttribute("peliculas", peliculaRepository.findAll());
         return "dashboard";
     }
 }

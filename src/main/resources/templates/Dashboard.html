@@ -35,6 +35,27 @@
 
     </div>
 
+    <div class="seccion-catalogo">
+        <h2>🍿 Películas en Catálogo</h2>
+        <div class="peliculas-grid">
+            <div class="pelicula-card" th:each="p : ${peliculas}">
+                <div class="pelicula-img-container">
+                    <img th:src="'https://loremflickr.com/320/240/cinema,movie,' + ${p.titulo}" th:alt="${p.titulo}" class="pelicula-img" loading="lazy">
+                    <span th:class="${p.stock > 0 ? 'pelicula-badge stock-ok' : 'pelicula-badge stock-0'}" 
+                        th:text="${p.stock > 0 ? 'Disponible' : 'Agotado'}"></span>
+                </div>
+                <div class="pelicula-info">
+                    <h3 th:text="${p.titulo}">Título de Película</h3>
+                    <p class="pelicula-genero" th:text="${p.genero != null && p.genero != '' ? p.genero : 'Sin género'}">Género</p>
+                    <div class="pelicula-footer">
+                        <span class="pelicula-precio" th:text="${p.precio} + ' €/día'">2.50 €/día</span>
+                        <span class="pelicula-stock" th:text="'Stock: ' + ${p.stock}">Stock: 5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="seccion">
         <h2>Información</h2>
         <p>Bienvenido al sistema de gestión del Videoclub. Desde aquí puedes gestionar clientes,
