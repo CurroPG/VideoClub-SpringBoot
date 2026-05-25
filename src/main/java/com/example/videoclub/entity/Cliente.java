@@ -20,7 +20,7 @@ public class Cliente {
 
     @NotBlank
     @Size(max = 120)
-    @Column(nullable = false, length = 120)
+    @Column(name = "apellidos", nullable = false, length = 120)
     private String apellido;
 
     @Size(max = 150)
