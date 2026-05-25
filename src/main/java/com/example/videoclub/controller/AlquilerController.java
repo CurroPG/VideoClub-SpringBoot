@@ -30,7 +30,7 @@ public class AlquilerController {
     @GetMapping
     public String listarAlquileres(Model model) {
         model.addAttribute("alquileres", alquilerRepository.findAll());
-        return "alquileres/AlquilerListingView";
+        return "Alquilerlistingview";
     }
 
     @GetMapping("/nuevo")
@@ -39,7 +39,7 @@ public class AlquilerController {
         model.addAttribute("clientes", clienteRepository.findAll());
         model.addAttribute("peliculas", peliculaRepository.findAll());
         model.addAttribute("accion", "Crear");
-        return "alquileres/AlquilerFormView";
+        return "Alquilerformview";
     }
 
     @PostMapping("/nuevo")
@@ -50,7 +50,7 @@ public class AlquilerController {
             model.addAttribute("clientes", clienteRepository.findAll());
             model.addAttribute("peliculas", peliculaRepository.findAll());
             model.addAttribute("accion", "Crear");
-            return "alquileres/AlquilerFormView";
+            return "Alquilerformview";
         }
 
         Cliente cliente = clienteRepository.findById(clienteId)

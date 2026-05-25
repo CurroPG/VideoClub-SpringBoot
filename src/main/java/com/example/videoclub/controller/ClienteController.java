@@ -21,14 +21,14 @@ public class ClienteController {
     @GetMapping
     public String listarClientes(Model model) {
         model.addAttribute("clientes", clienteRepository.findAll());
-        return "clientes/ClienteListingView";
+        return "Clientelistingview";
     }
 
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevo(Model model) {
         model.addAttribute("cliente", new Cliente());
         model.addAttribute("accion", "Añadir");
-        return "clientes/ClienteFormView";
+        return "Clienteformview";
     }
 
     @PostMapping("/nuevo")
@@ -37,7 +37,7 @@ public class ClienteController {
                             Model model) {
         if (result.hasErrors()) {
             model.addAttribute("accion", "Añadir");
-            return "clientes/ClienteFormView";
+            return "Clienteformview";
         }
         clienteRepository.save(cliente);
         return "redirect:/clientes";
@@ -49,7 +49,7 @@ public class ClienteController {
                 .orElseThrow(() -> new IllegalArgumentException("Cliente no encontrado: " + id));
         model.addAttribute("cliente", cliente);
         model.addAttribute("accion", "Editar");
-        return "clientes/ClienteFormView";
+        return "Clienteformview";
     }
 
     @PostMapping("/{id}/editar")
@@ -59,7 +59,7 @@ public class ClienteController {
                                 Model model) {
         if (result.hasErrors()) {
             model.addAttribute("accion", "Editar");
-            return "clientes/ClienteFormView";
+            return "Clienteformview";
         }
         cliente.setId((int) (long) id);
         clienteRepository.save(cliente);

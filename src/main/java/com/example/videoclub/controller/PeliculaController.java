@@ -21,14 +21,14 @@ public class PeliculaController {
     @GetMapping
     public String listarPeliculas(Model model) {
         model.addAttribute("peliculas", peliculaRepository.findAll());
-        return "peliculas/PeliculaListingView";
+        return "Peliculalistingview";
     }
 
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevo(Model model) {
         model.addAttribute("pelicula", new Pelicula());
         model.addAttribute("accion", "Añadir");
-        return "peliculas/PeliculaFormView";
+        return "Peliculaformview";
     }
 
     @PostMapping("/nuevo")
@@ -37,7 +37,7 @@ public class PeliculaController {
                             Model model) {
         if (result.hasErrors()) {
             model.addAttribute("accion", "Añadir");
-            return "peliculas/PeliculaFormView";
+            return "Peliculaformview";
         }
         peliculaRepository.save(pelicula);
         return "redirect:/peliculas";
@@ -49,7 +49,7 @@ public class PeliculaController {
                 .orElseThrow(() -> new IllegalArgumentException("Película no encontrada: " + id));
         model.addAttribute("pelicula", pelicula);
         model.addAttribute("accion", "Editar");
-        return "peliculas/PeliculaFormView";
+        return "Peliculaformview";
     }
 
     @PostMapping("/{id}/editar")
@@ -59,7 +59,7 @@ public class PeliculaController {
                                 Model model) {
         if (result.hasErrors()) {
             model.addAttribute("accion", "Editar");
-            return "peliculas/PeliculaFormView";
+            return "Peliculaformview";
         }
         pelicula.setId((int) (long) id);
         peliculaRepository.save(pelicula);
