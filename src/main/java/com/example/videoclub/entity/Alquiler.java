@@ -3,6 +3,7 @@ package com.example.videoclub.entity;
 
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -19,7 +20,7 @@ public class Alquiler {
     private LocalDate fechaDevolucion;
 
     @Column(name = "precio_total")
-    private double precioTotal;
+    private BigDecimal precioTotal;
 
     @Column(nullable = true)
     private boolean devuelta = false;
@@ -41,8 +42,8 @@ public class Alquiler {
     public LocalDate getFechaDevolucion() {return fechaDevolucion;}
     public void setFechaDevolucion(LocalDate fechaDevolucion) {this.fechaDevolucion = fechaDevolucion;}
 
-    public double getPrecioTotal() {return precioTotal;}
-    public void setPrecioTotal(double precioTotal) {this.precioTotal = precioTotal;}
+    public BigDecimal getPrecioTotal() {return precioTotal;}
+    public void setPrecioTotal(BigDecimal precioTotal) {this.precioTotal = precioTotal;}
 
     public boolean isDevuelta() {return devuelta;}
     public void setDevuelta(boolean devuelta) {this.devuelta = devuelta;}
