@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Alquileres</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+<header>
+    <h1>📋 Listado de Alquileres</h1>
+</header>
+
+<div class="contenedor">
+    <div class="barra-acciones">
+        <a th:href="@{/dashboard}" class="btn btn-primary">← Dashboard</a>
+        <a th:href="@{/alquileres/nuevo}" class="btn btn-primary">+ Nuevo alquiler</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Cliente</th>
+                <th>Película</th>
+                <th>Fecha alquiler</th>
+                <th>Fecha devolución</th>
+                <th>Precio total</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${#lists.isEmpty(alquileres)}">
+                <td colspan="8" class="vacio">No hay alquileres registrados.</td>
+            </tr>
+            <tr th:each="alquiler : ${alquileres}">
+                <td th:text="${alquiler.id}"></td>
+                <td th:text="${alquiler.cliente.nombre + ' ' + alquiler.cliente.apellido}"></td>
+                <td th:text="${alquiler.pelicula.titulo}"></td>
+                <td th:text="${alquiler.fechaAlquiler}"></td>
+                <td th:text="${alquiler.fechaDevolucion != null ? alquiler.fechaDevolucion : '—'}"></td>
+                <td th:text="${alquiler.precioTotal > 0 ? alquiler.precioTotal + ' €' : '—'}"></td>
+                <td>
+                    <span th:if="${alquiler.devuelta}" class="badge badge-devuelta">Devuelta</span>
+                    <span th:if="${!alquiler.devuelta}" class="badge badge-pendiente">Pendiente</span>
+                </td>
+                <td>
+                    <form th:if="${!alquiler.devuelta}"
+                          th:action="@{/alquileres/{id}/devolver(id=${alquiler.id})}"
+                          method="post" style="display:inline">
+                        <button type="submit" class="btn-devolver" title="Marcar como devuelta">✔ Devolver</button>
+                    </form>
+                    <form th:action="@{/alquileres/{id}/eliminar(id=${alquiler.id})}" method="post"
+                          style="display:inline"
+                          onsubmit="return confirm('¿Eliminar este alquiler?')">
+                        <button type="submit" class="btn-icon" title="Eliminar">🗑️</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer>Videoclub — Proyecto Spring Boot 3ª Evaluación</footer>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard Videoclub</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+<header>
+    <h1>🎬 Videoclub</h1>
+    <p>Panel de control principal</p>
+</header>
+
+<div class="contenedor">
+    <div class="tarjetas">
+
+        <a th:href="@{/clientes}" class="tarjeta">
+            <div class="icono">👥</div>
+            <h2>Clientes</h2>
+            <div class="numero" th:text="${totalClientes}">0</div>
+        </a>
+
+        <a th:href="@{/peliculas}" class="tarjeta">
+            <div class="icono">🎞️</div>
+            <h2>Películas</h2>
+            <div class="numero" th:text="${totalPeliculas}">0</div>
+        </a>
+
+        <a th:href="@{/alquileres}" class="tarjeta">
+            <div class="icono">📋</div>
+            <h2>Alquileres</h2>
+            <div class="numero" th:text="${totalAlquileres}">0</div>
+        </a>
+
+    </div>
+
+    <div class="seccion">
+        <h2>Información</h2>
+        <p>Bienvenido al sistema de gestión del Videoclub. Desde aquí puedes gestionar clientes,
+        películas y alquileres conectados a la base de datos Supabase.</p>
+    </div>
+</div>
+
+<footer>Videoclub — Proyecto Spring Boot 3ª Evaluación</footer>
+</body>
+</html>

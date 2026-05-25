@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Clientes</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+<header>
+    <h1>👥 Listado de Clientes</h1>
+</header>
+
+<div class="contenedor">
+    <div class="barra-acciones">
+        <a th:href="@{/dashboard}" class="btn btn-primary">← Dashboard</a>
+        <a th:href="@{/clientes/nuevo}" class="btn btn-primary">+ Añadir cliente</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Fecha registro</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${#lists.isEmpty(clientes)}">
+                <td colspan="7" class="vacio">No hay clientes registrados.</td>
+            </tr>
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.id}"></td>
+                <td th:text="${cliente.nombre}"></td>
+                <td th:text="${cliente.apellido}"></td>
+                <td th:text="${cliente.email != null ? cliente.email : '—'}"></td>
+                <td th:text="${cliente.telefono != null ? cliente.telefono : '—'}"></td>
+                <td th:text="${cliente.fechaRegistro}"></td>
+                <td>
+                    <a th:href="@{/clientes/{id}/editar(id=${cliente.id})}" class="btn-icon" title="Editar">✏️</a>
+                    <form th:action="@{/clientes/{id}/eliminar(id=${cliente.id})}" method="post"
+                        style="display:inline"
+                        onsubmit="return confirm('¿Eliminar este cliente?')">
+                        <button type="submit" class="btn-icon" title="Eliminar">🗑️</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer>Videoclub — Proyecto Spring Boot 3ª Evaluación</footer>
+</body>
+</html>

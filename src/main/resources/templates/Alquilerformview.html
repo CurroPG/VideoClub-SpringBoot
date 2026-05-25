@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Alquiler</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+<header>
+    <h1 th:text="${accion} + ' alquiler'">Nuevo Alquiler</h1>
+</header>
+
+<div class="contenedor">
+    <div class="card">
+        <form th:action="@{/alquileres/nuevo}"
+              th:object="${alquiler}"
+              method="post">
+
+            <div class="form-group">
+                <label for="clienteId">Cliente *</label>
+                <select id="clienteId" name="clienteId" required>
+                    <option value="">— Selecciona un cliente —</option>
+                    <option th:each="c : ${clientes}"
+                            th:value="${c.id}"
+                            th:text="${c.nombre + ' ' + c.apellido}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="peliculaId">Película *</label>
+                <select id="peliculaId" name="peliculaId" required>
+                    <option value="">— Selecciona una película —</option>
+                    <option th:each="p : ${peliculas}"
+                            th:value="${p.id}"
+                            th:text="${p.titulo + ' (' + p.precio + ' €/día)'}"></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="fechaAlquiler">Fecha de alquiler *</label>
+                <input type="date" id="fechaAlquiler" th:field="*{fechaAlquiler}" required/>
+                <span class="error" th:if="${#fields.hasErrors('fechaAlquiler')}" th:errors="*{fechaAlquiler}"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="fechaDevolucion">Fecha de devolución prevista <span style="color:#aaa; font-weight:normal">(opcional)</span></label>
+                <input type="date" id="fechaDevolucion" th:field="*{fechaDevolucion}"/>
+                <span class="error" th:if="${#fields.hasErrors('fechaDevolucion')}" th:errors="*{fechaDevolucion}"></span>
+                <p class="info">Si indicas la fecha de devolución, se calculará el precio total automáticamente.</p>
+            </div>
+
+            <div class="acciones">
+                <a th:href="@{/alquileres}" class="btn btn-secondary">← Cancelar</a>
+                <button type="submit" class="btn btn-primary">Crear alquiler</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<footer>Videoclub — Proyecto Spring Boot 3ª Evaluación</footer>
+</body>
+</html>

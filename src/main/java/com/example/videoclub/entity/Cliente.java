@@ -3,7 +3,6 @@ package com.example.videoclub.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import org.hibernate.annotations.CurrentTimestamp;
 
 import java.time.LocalDate;
 

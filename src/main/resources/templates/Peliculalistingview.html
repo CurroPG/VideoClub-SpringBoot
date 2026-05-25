@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Películas</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+
+<header>
+    <h1>🎞️ Catálogo de Películas</h1>
+</header>
+
+<div class="contenedor">
+    <div class="barra-acciones">
+        <a th:href="@{/dashboard}" class="btn btn-primary">← Dashboard</a>
+        <a th:href="@{/peliculas/nuevo}" class="btn btn-primary">+ Añadir película</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Título</th>
+                <th>Género</th>
+                <th>Director</th>
+                <th>Año</th>
+                <th>Precio/día</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${#lists.isEmpty(peliculas)}">
+                <td colspan="8" class="vacio">No hay películas en el catálogo.</td>
+            </tr>
+            <tr th:each="pelicula : ${peliculas}">
+                <td th:text="${pelicula.id}"></td>
+                <td th:text="${pelicula.titulo}"></td>
+                <td th:text="${pelicula.genero != null ? pelicula.genero : '—'}"></td>
+                <td th:text="${pelicula.director != null ? pelicula.director : '—'}"></td>
+                <td th:text="${pelicula.fechaEstreno != null ? pelicula.fechaEstreno : '—'}"></td>
+                <td th:text="${pelicula.precio} + ' €'"></td>
+                <td>
+                    <span th:class="${pelicula.stock > 0 ? 'badge-stock stock-ok' : 'badge-stock stock-0'}"
+                        th:text="${pelicula.stock}"></span>
+                </td>
+                <td>
+                    <a th:href="@{/peliculas/{id}/editar(id=${pelicula.id})}" class="btn-icon" title="Editar">✏️</a>
+                    <form th:action="@{/peliculas/{id}/eliminar(id=${pelicula.id})}" method="post"
+                        style="display:inline"
+                        onsubmit="return confirm('¿Eliminar esta película?')">
+                        <button type="submit" class="btn-icon" title="Eliminar">🗑️</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<footer>Videoclub — Proyecto Spring Boot 3ª Evaluación</footer>
+</body>
+</html>

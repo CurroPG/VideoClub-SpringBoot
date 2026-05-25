@@ -2,7 +2,6 @@ package com.example.videoclub.entity;
 
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.DecimalMin;
 
 import java.time.LocalDate;
 
