@@ -25,14 +25,13 @@
                 <th>Película</th>
                 <th>Fecha alquiler</th>
                 <th>Fecha devolución</th>
-                <th>Precio total</th>
                 <th>Estado</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             <tr th:if="${#lists.isEmpty(alquileres)}">
-                <td colspan="8" class="vacio">No hay alquileres registrados.</td>
+                <td colspan="7" class="vacio">No hay alquileres registrados.</td>
             </tr>
             <tr th:each="alquiler : ${alquileres}">
                 <td th:text="${alquiler.id}"></td>
@@ -46,13 +45,13 @@
                 </td>
                 <td>
                     <form th:if="${!alquiler.devuelta}"
-                          th:action="@{/alquileres/{id}/devolver(id=${alquiler.id})}"
-                          method="post" style="display:inline">
+                        th:action="@{/alquileres/{id}/devolver(id=${alquiler.id})}"
+                        method="post" style="display:inline">
                         <button type="submit" class="btn-devolver" title="Marcar como devuelta">✔ Devolver</button>
                     </form>
                     <form th:action="@{/alquileres/{id}/eliminar(id=${alquiler.id})}" method="post"
-                          style="display:inline"
-                          onsubmit="return confirm('¿Eliminar este alquiler?')">
+                        style="display:inline"
+                        onsubmit="return confirm('¿Eliminar este alquiler?')">
                         <button type="submit" class="btn-icon" title="Eliminar">🗑️</button>
                     </form>
                 </td>
